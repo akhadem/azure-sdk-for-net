@@ -13,44 +13,29 @@
 // limitations under the License.
 //
 
-using System;
-
 namespace Microsoft.Azure.Management.DataFactories.Models
 {
     /// <summary>
-    /// A copy activity sink.
+    /// Interim staging settings
     /// </summary>
-    public abstract class CopySink : CopyLocation
+    public class StagingSettings
     {
         /// <summary>
-        /// Write batch size.
+        /// Name of the Azure Storage linked service used as an interim staging. 
+        /// Must be specified if copy via staging is enbled.
         /// </summary>
-        public int WriteBatchSize { get; set; }
+        [AdfRequired]
+        public string LinkedServiceName { get; set; }
 
         /// <summary>
-        /// Write batch timeout.
+        /// Optional. The storage path for storing the interim data.
         /// </summary>
-        public TimeSpan WriteBatchTimeout { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
-        /// Sink retry count.
+        /// Optional. Specifies whether to use compression when copy data via an interim staging.
+        /// Default value is false.
         /// </summary>
-        public int? SinkRetryCount { get; set; }
-
-        /// <summary>
-        /// Sink retry wait.
-        /// </summary>
-        public TimeSpan? SinkRetryWait { get; set; }
-
-        protected CopySink()
-        {
-        }
-
-        protected CopySink(int writeBatchSize, TimeSpan writeBatchTimeout) 
-            : this()
-        {
-            this.WriteBatchSize = writeBatchSize;
-            this.WriteBatchTimeout = writeBatchTimeout;
-        }
+        public bool? EnableCompression { get; set; }
     }
 }

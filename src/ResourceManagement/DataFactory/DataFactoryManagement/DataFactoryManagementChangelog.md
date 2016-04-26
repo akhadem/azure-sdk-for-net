@@ -1,7 +1,21 @@
-﻿For additional details on features, see the full [Azure Data Factory Release Notes](https://azure.microsoft.com/en-us/documentation/articles/data-factory-release-notes). 
+
+## Version 
+_Release date:  
+
+### Feature Additions
+
+* Added new StorageFormat type OrcFormat type to copy files in ORC format.
+
+* The following properties have been added to PipelineProperties: 
+    * PipelineMode
+    * ExpirationTime
+    * Datasets
+* The following properties have been added to PipelineRuntimeInfo: 
+    * PipelineState
+* Added new StorageFormat type JsonFormat type to define datasets whose data is in JSON format. 
 
 ## Version 4.6.0
-_Release date: 2016.04.14_ 
+_Release date: 2016.03.28_ 
 
 ### Feature Additions
 
@@ -200,3 +214,30 @@ _Release date: 2015.07.10_
 * Add IDotNetActivity interface for implementing a custom C# activity.
 * Add CopyBehavior property for BlobSink. 
 * Add FileSystemSink for data output to on-premises file shares. 
+=======
+﻿For additional details on features, see the full [Azure Data Factory Release Notes](https://azure.microsoft.com/en-us/documentation/articles/data-factory-release-notes). 
+
+## Version 
+_Release date: _ 
+
+### Bug Fixes
+* Mark WriteBatchSize and WriteBatchTimeout as optional in CopySink.  
+
+
+## Version 4.6.0
+<<<<<<< HEAD
+_Release date: 2016.04.14_ 
+=======
+_Release date: 2016.03.28_ 
+=======
+
+## Version 4.5.0
+_Release date: 2016.02.24_
+=======
+## Version 
+Release date: 
+
+### Feature Additions
+* Add AllowPolyBase and PolyBaseSettings properties to SqlDWSink.
+    * Enables the use of PolyBase to copy data into SQL Data Warehouse.
+

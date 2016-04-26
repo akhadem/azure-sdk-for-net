@@ -526,5 +526,95 @@ namespace DataFactory.Tests.Framework.JsonSamples
     }
 }
 ";
+
+        [JsonSample]
+        public const string BlobOrcFormatTable = @"
+{
+    name: ""MyDemoBlob"",
+    properties:
+    {
+        type: ""AzureBlob"",
+        linkedServiceName: ""MyLinkedServiceName"",
+        structure:
+        [
+            { name: ""PartitionKey"", type: ""Guid"" },
+            { name: ""RowKey"", type: ""String"" }, 
+            { name: ""Timestamp"", type: ""String"" },
+            { name: ""game_id "", type: ""String"" },
+        ],
+        typeProperties:
+        {        
+            folderPath: ""MyContainer\\MySubFolder\\$Date\\$Time\\FileName$Date$Time\\{PartitionKey}"",
+            fileName: ""TestBlobName"",   
+            format:
+            {
+                type: ""OrcFormat""
+            },
+            partitionedBy:
+            [
+                { name: ""PartitionKey"", value: { type: ""DateTime"", date: ""SliceStart"", format: ""yyyy-MM-dd"" } },
+            ]
+        },
+         availability:
+        {
+            interval: 1, 
+            frequency: ""Hour"",
+            style: ""StartOfInterval""     
+        },
+        policy:
+        {
+            validation:
+            {   
+                minimumSizeMB: 200.0
+            }
+        }
+    }
+}";
+
+        [JsonSample]
+        public const string CopyBlobToAzureDataLakeWithPerformanceParams = @"
+{
+    name: ""MyPipelineName"",
+    properties:
+    {
+        description : ""Copy from Blob to AzureDataLake with performance parameters"",
+        activities:
+        [
+            {
+                type: ""Copy"",
+                name: ""MyActivityName"",
+                typeProperties:
+                {
+                    source:
+                    {
+                        type: ""BlobSource"",
+                    },
+                     sink:
+                    {
+                        type: ""AzureDataLakeStoreSink"",
+                        writeBatchSize: 1000000,
+                        writeBatchTimeout: ""01:00:00"",
+                    },
+                    ""parallelCopies"": 5,
+                    ""cloudUnits"": 4
+                },
+                inputs:
+                [ 
+                    {
+                        name: ""RawBlob""
+                    }
+                ],
+                outputs:
+                [ 
+                    {
+                        name: ""AdlOut""
+                    }
+                ],
+                linkedServiceName: ""MyLinkedServiceName""
+            }
+        ]
+    }
+}
+";
     }
 }

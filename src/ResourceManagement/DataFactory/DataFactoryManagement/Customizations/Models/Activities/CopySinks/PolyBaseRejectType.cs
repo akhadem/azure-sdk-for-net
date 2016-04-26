@@ -13,44 +13,22 @@
 // limitations under the License.
 //
 
-using System;
-
 namespace Microsoft.Azure.Management.DataFactories.Models
 {
     /// <summary>
-    /// A copy activity sink.
+    /// PolyBase Reject Type. A property of <see cref="PolyBaseSettings"/>.
+    /// Indicates whether RejectValue is specified as a literal value or a percentage.
     /// </summary>
-    public abstract class CopySink : CopyLocation
+    public static class PolyBaseRejectType
     {
         /// <summary>
-        /// Write batch size.
+        /// Indicates the RejectValue property in PolyBase settings is specified as a literal value.
         /// </summary>
-        public int WriteBatchSize { get; set; }
+        public const string Value = "Value";
 
         /// <summary>
-        /// Write batch timeout.
+        /// Indicates the RejectValue property in PolyBase settings is specified as a percentage.
         /// </summary>
-        public TimeSpan WriteBatchTimeout { get; set; }
-
-        /// <summary>
-        /// Sink retry count.
-        /// </summary>
-        public int? SinkRetryCount { get; set; }
-
-        /// <summary>
-        /// Sink retry wait.
-        /// </summary>
-        public TimeSpan? SinkRetryWait { get; set; }
-
-        protected CopySink()
-        {
-        }
-
-        protected CopySink(int writeBatchSize, TimeSpan writeBatchTimeout) 
-            : this()
-        {
-            this.WriteBatchSize = writeBatchSize;
-            this.WriteBatchTimeout = writeBatchTimeout;
-        }
+        public const string Percentage = "Percentage";
     }
 }
